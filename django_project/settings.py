@@ -21,8 +21,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'w$-m2e-fw0q#@7(&6(2$jbfjrb-i(m9kitzk0yyqvn5p0tp95#'
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = 'w$-m2e-fw0q#@7(&6(2$jbfjrb-i(m9kitzk0yyqvn5p0tp95#'
+# SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -35,6 +35,7 @@ ALLOWED_HOSTS = ['djangoproject69.herokuapp.com', 'localhost', '127.0.0.1']
 INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'users.apps.UsersConfig',
+    'movies.apps.MoviesConfig',
     'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
