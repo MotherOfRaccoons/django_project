@@ -1,6 +1,13 @@
 {% extends "blog/base.html" %}
 {% block content %}
-    <h1>{{ object.username }}'s profile.</h1>
+    <div class="header">
+        <img class="rounded-circle account-img" src="{{ user.profile.image.url }}" alt="profile-picture">
+        <h1>{{ user.username }}'s profile.</h1>
+        <a class="btn btn-outline-dark" href="{% url 'user-posts' user.username %}">All posts</a>
+        {% if user == logged_in_user %}
+            <a class="btn btn-outline-dark" href="{% url 'profile' %}">Settings</a>
+        {% endif %}
+    </div>
     <hr>
     <h3>Total watchtime: {{ watchtime }} hrs</h3>
 
@@ -31,7 +38,9 @@
                     <tbody>
                         {% for entry in planned %}
                             <tr>
-                                <td>{{ entry.movie.title }}</td>
+                                <td>
+                                    <a style="color:inherit" href="{% url 'movie-detail' entry.movie.id %}">{{ entry.movie.title }}</a>
+                                </td>
                                 <td>{{ entry.movie.duration }} min</td>
                                 <td>{{ entry.date_added }}</td>
                             </tr>

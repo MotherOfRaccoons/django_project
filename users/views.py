@@ -61,7 +61,7 @@ class UserPostListView(ListView):
 class UserDetailView(DetailView):
     model = User
     template_name = 'users/user_detail.html'
-    context_object_name = 'users'
+    context_object_name = 'user'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -70,5 +70,7 @@ class UserDetailView(DetailView):
         context['completed'] = completed
         context['planned'] = user_list.filter(status__status='Planned')
         context['favorite'] = user_list.filter(status__status='Favorite')
-        context['watchtime'] = format(completed.aggregate(Sum('movie__duration'))['movie__duration__sum'] or 0 / 60, '.2f')
+        watchtime_mins = completed.aggregate(Sum('movie__duration'))['movie__duration__sum'] or 0
+        context['watchtime'] = format(watchtime_mins / 60, '.2f')
+        context['logged_in_user'] = self.request.user
         return context

@@ -13,7 +13,7 @@ ul {
 }
 
 .bg-steel {
-  background-color: #ff8571;
+  background-color: #ff9853;
 }
 
 .site-header .navbar-nav .nav-link {
@@ -81,4 +81,50 @@ a.article-title:hover {
 
 .account-heading {
   font-size: 2.5rem;
+}
+
+/* MAY */
+
+#movie-article {
+  text-decoration: none;
+  color: inherit;
+}
+
+#movie-article article:hover {
+  background-color: #eeeeee;
+}
+.list-completed {
+  background-color: rgba(173, 216, 230, 0.25);
+}
+
+a.list-completed:hover {
+  background-color: rgba(173, 216, 230, 0.5);
+}
+
+.list-planned {
+  background-color: rgba(144, 238, 144, 0.25);
+}
+
+a.list-planned:hover {
+  background-color: rgba(144, 238, 144, 0.5);
+}
+
+.list-remove {
+  background-color: rgba(240, 128, 128, 0.25);
+}
+
+a.list-remove:hover {
+  background-color: rgba(240, 128, 128, 0.5);
+}
+
+.header {
+  display: block;
+  height: 100px;
+}
+
+.header img {
+  float: left;
+  width: 100px;
+  height: 100px;
+  background: #555;
 }

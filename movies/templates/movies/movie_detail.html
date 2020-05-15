@@ -1,0 +1,63 @@
+{% extends "blog/base.html" %}
+{% block content %}
+
+    <article class="media content-section
+    {% if movie in completed_movies %}
+        list-completed
+    {% elif movie in planned_movies %}
+        list-planned
+    {% endif %}
+    ">
+        <div>
+            <div>
+                <img width="150" src="{{ movie.poster.url }}">
+            </div>
+            <div>
+                <button style="width: 150px" class="btn dropdown-toggle mt-1
+                {% if movie in completed_movies %}
+                    btn-outline-primary
+                {% elif movie in planned_movies %}
+                    btn-outline-success
+                {% else %}
+                    btn-outline-secondary
+                {% endif %}
+                " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                    {% if movie in completed_movies %}
+                        Completed
+                    {% elif movie in planned_movies %}
+                        Planned
+                    {% else %}
+                        Add to...
+                    {% endif %}
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    {% if movie in planned_movies %}
+                        <a class="dropdown-item list-completed" href="{% url 'add-to-completed' %}?next={{ request.path|urlencode }}&movie_id={{ movie.id }}">Completed</a>
+                        <a class="dropdown-item list-remove" href="{% url 'remove-from-lists' %}?next={{ request.path|urlencode }}&movie_id={{ movie.id }}">Remove</a>
+                    {% elif movie in completed_movies %}
+                        <a class="dropdown-item list-planned" href="{% url 'add-to-planned' %}?next={{ request.path|urlencode }}&movie_id={{ movie.id }}">Planned</a>
+                        <a class="dropdown-item list-remove" href="{% url 'remove-from-lists' %}?next={{ request.path|urlencode }}&movie_id={{ movie.id }}">Remove</a>
+                    {% else %}
+                        <a class="dropdown-item list-planned" href="{% url 'add-to-planned' %}?next={{ request.path|urlencode }}&movie_id={{ movie.id }}">Planned</a>
+                        <a class="dropdown-item list-completed" href="{% url 'add-to-completed' %}?next={{ request.path|urlencode }}&movie_id={{ movie.id }}">Completed</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="media-body m-3">
+            <h2 class="text-center">{{ movie.title }} ({{ movie.released.year }})</h2>
+            <p>{{ movie.description }}</p>
+        </div>
+
+    </article>
+
+    <article class="media content-section">
+        <div class="media-body m-3">
+            <h3>Duration:</h3>
+            <p> {{ movie.duration }} min</p>
+        </div>
+    </article>
+
+{% endblock content %}

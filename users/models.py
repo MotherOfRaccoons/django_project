@@ -30,11 +30,23 @@ class MovieStatus(models.Model):
         return self.status
 
 
+class MovieListManager(models.Manager):
+    def create_completed_entry(self, user, movie):
+        list_entry = self.create(user=user, movie=movie, status=MovieStatus.objects.get(status='Completed'))
+        return list_entry
+
+    def create_planned_entry(self, user, movie):
+        list_entry = self.create(user=user, movie=movie, status=MovieStatus.objects.get(status='Planned'))
+        return list_entry
+
+
 class MovieList(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
     status = models.ForeignKey(MovieStatus, on_delete=models.DO_NOTHING)
     date_added = models.DateTimeField(default=timezone.now)
+
+    objects = MovieListManager()
 
     def __str__(self):
         return f"{self.user}'s {self.status}"
