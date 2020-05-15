@@ -1,8 +1,13 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.db.models import Sum
+from django.views.generic import (
+    DetailView, ListView
+)
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
-from .models import User
+from .models import User, MovieList
+from blog.models import Post
 
 
 def register(request):
@@ -39,3 +44,31 @@ def profile(request):
     }
 
     return render(request, 'users/profile.html', context)
+
+
+#   Selected user's posts
+class UserPostListView(ListView):
+    model = Post
+    template_name = 'users/user_posts.html'
+    context_object_name = 'posts'
+    paginate_by = 5
+
+    def get_queryset(self):
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
+        return Post.objects.filter(author=user).order_by('-date_posted')
+
+
+class UserDetailView(DetailView):
+    model = User
+    template_name = 'users/user_detail.html'
+    context_object_name = 'users'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user_list = MovieList.objects.filter(user_id=self.kwargs.get('pk'))
+        completed = user_list.filter(status__status='Completed')
+        context['completed'] = completed
+        context['planned'] = user_list.filter(status__status='Planned')
+        context['favorite'] = user_list.filter(status__status='Favorite')
+        context['watchtime'] = format(completed.aggregate(Sum('movie__duration'))['movie__duration__sum'] or 0 / 60, '.2f')
+        return context

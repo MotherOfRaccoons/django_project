@@ -1,5 +1,7 @@
+from django.utils import timezone
 from django.db import models
 from django.contrib.auth.models import User
+from movies.models import Movie
 from PIL import Image
 
 
@@ -20,3 +22,19 @@ class Profile(models.Model):
     #         img.thumbnail(output_size)
     #         img.save(self.image.path)
 
+
+class MovieStatus(models.Model):
+    status = models.CharField(max_length=10)
+
+    def __str__(self):
+        return self.status
+
+
+class MovieList(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    status = models.ForeignKey(MovieStatus, on_delete=models.DO_NOTHING)
+    date_added = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return f"{self.user}'s {self.status}"

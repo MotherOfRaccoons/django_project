@@ -7,5 +7,5 @@ from .views import SearchView
 
 urlpatterns = [
     path('', MovieListView.as_view(), name='movie-home'),
-    path('search/', SearchView.as_view(), name='search-movie')
+    path('search/', SearchView.as_view(), name='search-movie'),
 ]

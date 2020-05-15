@@ -40,6 +40,7 @@ urlpatterns = [
          name='password_reset_complete'),
     path('', include('blog.urls')),
     path('movies/', include('movies.urls')),
+    path('user/', include('users.urls')),
 ]
 
 if settings.DEBUG:
