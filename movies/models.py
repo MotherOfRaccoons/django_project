@@ -1,5 +1,7 @@
 from django.db import models
 from django.db.models import Q
+from django.contrib.contenttypes.fields import GenericRelation
+from star_ratings.models import UserRating, Rating
 
 
 class PostManager(models.Manager):
@@ -19,6 +21,7 @@ class Movie(models.Model):
     released = models.DateField()
     duration = models.PositiveSmallIntegerField()
     poster = models.ImageField(default="no_image.png", upload_to="movie_posters")
+    ratings = GenericRelation(Rating, related_query_name='movies')
 
     objects = PostManager()
 

@@ -8,6 +8,7 @@ from django.views.generic import (
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from .models import User, MovieList
 from blog.models import Post
+from star_ratings.models import UserRating
 
 
 def register(request):
@@ -65,7 +66,8 @@ class UserDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        user_list = MovieList.objects.filter(user_id=self.kwargs.get('pk'))
+        user_id = self.kwargs.get('pk')
+        user_list = MovieList.objects.filter(user_id=user_id)
         completed = user_list.filter(status__status='Completed')
         context['completed'] = completed
         context['planned'] = user_list.filter(status__status='Planned')
@@ -73,4 +75,8 @@ class UserDetailView(DetailView):
         watchtime_mins = completed.aggregate(Sum('movie__duration'))['movie__duration__sum'] or 0
         context['watchtime'] = format(watchtime_mins / 60, '.2f')
         context['logged_in_user'] = self.request.user
+
+        user_ratings = UserRating.objects.filter(user_id=user_id)
+        context['user_ratings'] = user_ratings
+
         return context

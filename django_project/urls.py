@@ -41,6 +41,7 @@ urlpatterns = [
     path('', include('blog.urls')),
     path('movies/', include('movies.urls')),
     path('user/', include('users.urls')),
+    path('ratings/', include('star_ratings.urls', namespace='ratings')),
 ]
 
 if settings.DEBUG:

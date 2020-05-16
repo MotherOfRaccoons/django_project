@@ -1,5 +1,10 @@
 {% extends "blog/base.html" %}
+{% load static %}
+{% load ratings %}
 {% block content %}
+
+    <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
+    <script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
 
     <article class="media content-section
     {% if movie in completed_movies %}
@@ -54,10 +59,19 @@
     </article>
 
     <article class="media content-section">
+    <div class="media-body m-3">
+        <h3>Rating:</h3>
+        {% ratings movie %}
+    </div>
+    </article>
+
+    <article class="media content-section">
         <div class="media-body m-3">
             <h3>Duration:</h3>
             <p> {{ movie.duration }} min</p>
         </div>
     </article>
+
+
 
 {% endblock content %}

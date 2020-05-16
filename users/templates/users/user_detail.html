@@ -55,6 +55,7 @@
                     <thead>
                         <tr>
                             <th>Title</th>
+                            <th>Rating</th>
                             <th>Duration</th>
                             <th>Date</th>
                         </tr>
@@ -62,7 +63,16 @@
                     <tbody>
                         {% for entry in completed %}
                             <tr>
-                                <td>{{ entry.movie.title }}</td>
+                                <td>
+                                    <a style="color:inherit" href="{% url 'movie-detail' entry.movie.id %}">{{ entry.movie.title }}</a>
+                                </td>
+                                <td>
+                                    {% for record in user_ratings %}
+                                        {% if record.rating_id == entry.movie_id %}
+                                            {{ record.score }} <i class="fas fa-star"></i>
+                                        {% endif %}
+                                    {% endfor %}
+                                </td>
                                 <td>{{ entry.movie.duration }} min</td>
                                 <td>{{ entry.date_added }}</td>
                             </tr>
@@ -84,7 +94,9 @@
                     <tbody>
                         {% for entry in favorite %}
                             <tr>
-                                <td>{{ entry.movie.title }}</td>
+                                <td>
+                                    <a style="color:inherit" href="{% url 'movie-detail' entry.movie.id %}">{{ entry.movie.title }}</a>
+                                </td>
                                 <td>{{ entry.movie.duration }} min</td>
                                 <td>{{ entry.date_added }}</td>
                             </tr>

@@ -1,6 +1,5 @@
-from django.shortcuts import render, get_object_or_404, HttpResponseRedirect, redirect
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.contrib.auth.models import User
+from django.shortcuts import HttpResponseRedirect, redirect
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import View
 from django.views.generic import (
     ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -41,15 +40,17 @@ class MovieListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['user'] = self.request.user
-        completed_movies = [
-            entry.movie for entry in MovieList.objects.filter(user=self.request.user, status__status='Completed')
-        ]
-        planned_movies = [
-            entry.movie for entry in MovieList.objects.filter(user=self.request.user, status__status='Planned')
-        ]
-        context['completed_movies'] = completed_movies
-        context['planned_movies'] = planned_movies
+        current_user = self.request.user
+        context['user'] = current_user
+        if not current_user.is_anonymous:
+            completed_movies = [
+                entry.movie for entry in MovieList.objects.filter(user=self.request.user, status__status='Completed')
+            ]
+            planned_movies = [
+                entry.movie for entry in MovieList.objects.filter(user=self.request.user, status__status='Planned')
+            ]
+            context['completed_movies'] = completed_movies
+            context['planned_movies'] = planned_movies
         return context
 
 
@@ -59,19 +60,21 @@ class MovieDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['user'] = self.request.user
-        completed_movies = [
-            entry.movie for entry in MovieList.objects.filter(user=self.request.user, status__status='Completed')
-        ]
-        planned_movies = [
-            entry.movie for entry in MovieList.objects.filter(user=self.request.user, status__status='Planned')
-        ]
-        context['completed_movies'] = completed_movies
-        context['planned_movies'] = planned_movies
+        current_user = self.request.user
+        context['user'] = current_user
+        if not current_user.is_anonymous:
+            completed_movies = [
+                entry.movie for entry in MovieList.objects.filter(user=self.request.user, status__status='Completed')
+            ]
+            planned_movies = [
+                entry.movie for entry in MovieList.objects.filter(user=self.request.user, status__status='Planned')
+            ]
+            context['completed_movies'] = completed_movies
+            context['planned_movies'] = planned_movies
         return context
 
 
-class AddToCompletedView(View):
+class AddToCompletedView(LoginRequiredMixin, View):
 
     def get(self, request, *args, **kwargs):
         next_page = request.GET.get("next")
@@ -84,7 +87,7 @@ class AddToCompletedView(View):
         return HttpResponseRedirect(next_page)
 
 
-class AddToPlannedView(View):
+class AddToPlannedView(LoginRequiredMixin, View):
 
     def get(self, request, *args, **kwargs):
         next_page = request.GET.get("next")
@@ -97,7 +100,7 @@ class AddToPlannedView(View):
         return redirect(next_page)
 
 
-class RemoveFromList(View):
+class RemoveFromList(LoginRequiredMixin, View):
 
     def get(self, request, *args, **kwargs):
         next_page = request.GET.get("next")
