@@ -1,10 +1,12 @@
 {% extends "blog/base.html" %}
+{% load humanize %}
+{% load crispy_forms_tags %}
 {% block content %}
     <article class="media content-section">
         <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}">
         <div class="media-body">
             <div class="article-metadata">
-                <a class="mr-2" href="{% url 'user-profile' object.author.id %}">{{ object.author }}</a>
+                <a class="mr-2"  href="{% url 'user-profile' object.author.id %}">{{ object.author }}</a>
                 <small class="text-muted">{{ object.date_posted|date:"F j, Y" }}</small>
                 {% if object.author == user %}
                     <div>
@@ -17,4 +19,69 @@
                 <p class="article-content">{{ object.content }}</p>
         </div>
     </article>
+
+
+    <style>
+
+    .comment-wrapper .panel-body {
+        max-height:650px;
+        overflow:auto;
+    }
+
+    .comment-wrapper .media-list .media img {
+        width:64px;
+        height:64px;
+        border:2px solid #e5e7e8;
+    }
+
+    .comment-wrapper .media-list .media {
+        border-bottom:1px dashed #efefef;
+        margin-bottom:25px;
+    }
+
+    #id_content {
+        max-height: 150px;
+        min-height: 50px;
+    }
+
+    </style>
+
+    <div class="comment-wrapper">
+        <div class="panel panel-info">
+            <div class="panel-body">
+
+                <form method="post">
+                    {% csrf_token %}
+                    {{ comment_form | crispy }}
+                    <button style="width: 100px" type="submit" class="btn btn-outline-info align-center">Post</button>
+                </form>
+                <hr>
+
+                <ul class="media-list">
+                    {% for comment in comments %}
+                    <li class="media">
+                        <a href="#" class="pull-left mr-2">
+                            <img src="{{ comment.author.profile.image.url }}" alt="" class="img rounded-circle">
+                         </a>
+                        <div class="media-body">
+                            <span class="text-muted pull-right">
+                                <small class="text-muted">{{ comment.date_posted | naturaltime}}</small>
+                            </span>
+                            <strong style="color: #ff9853">
+                                {{ comment.author.username }}
+                                {% if logged_user == comment.author %}
+                                    <a href={% url 'comment-delete' comment.id%} style="color: red">[x]</a>
+                                {% endif %}
+                            </strong>
+                            <p>
+                                {{ comment.content }}
+                            </p>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
 {% endblock content %}

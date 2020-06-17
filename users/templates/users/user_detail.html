@@ -2,12 +2,14 @@
 {% block content %}
     <div class="header">
         <img class="rounded-circle account-img" src="{{ user.profile.image.url }}" alt="profile-picture">
-        <h1>{{ user.username }}'s profile.</h1>
+        <h1>{{ user.username }}'s profile</h1>
         <a class="btn btn-outline-dark" href="{% url 'user-posts' user.username %}">All posts</a>
         {% if user == logged_in_user %}
             <a class="btn btn-outline-dark" href="{% url 'profile' %}">Settings</a>
         {% endif %}
     </div>
+    <hr>
+    <em>{{ user.first_name }} {{ user.last_name }} ({{ user.email }})</em>
     <hr>
     <h3>Total watchtime: {{ watchtime }} hrs</h3>
 
@@ -116,7 +118,7 @@
     <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
     <script>
         $('.mydatatable').DataTable({
-            "lengthChange": false
+            "lengthMenu": [5, 10, "All"]
         });
     </script>
 {% endblock content %}
