@@ -8,8 +8,8 @@ class PostManager(models.Manager):
     def search(self, query=None):
         qs = self.get_queryset()
         if query is not None:
-            or_lookup = (Q(title__icontains=query) |
-                         Q(description__icontains=query)
+            or_lookup = (Q(title_ru__icontains=query) |
+                         Q(title_en__icontains=query)
                          )
             qs = qs.filter(or_lookup).distinct()  # distinct() is often necessary with Q lookups
         return qs
