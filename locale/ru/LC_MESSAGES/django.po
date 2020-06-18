@@ -1,0 +1,305 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-06-18 19:32+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%"
+"100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: .\blog\templates\blog\base.html:14 .\blog\templates\blog\base.html:16
+#: .\blog\templates\blog\base.html:23
+msgid "Movie Tracker"
+msgstr "Трекер фильмов"
+
+#: .\blog\templates\blog\base.html:29
+msgid "Home"
+msgstr "Главная"
+
+#: .\blog\templates\blog\base.html:30
+msgid "Movies"
+msgstr "Фильмы"
+
+#: .\blog\templates\blog\base.html:31
+msgid "About"
+msgstr "О нас"
+
+#: .\blog\templates\blog\base.html:36
+msgid "Search..."
+msgstr "Поиск..."
+
+#: .\blog\templates\blog\base.html:39
+msgid "New Post"
+msgstr "Создать статью"
+
+#: .\blog\templates\blog\base.html:40
+msgid "Profile"
+msgstr "Профиль"
+
+#: .\blog\templates\blog\base.html:41
+msgid "Logout"
+msgstr "Выход"
+
+#: .\blog\templates\blog\base.html:43
+msgid "Login"
+msgstr "Вход"
+
+#: .\blog\templates\blog\base.html:44
+msgid "Register"
+msgstr "Регистрация"
+
+#: .\blog\templates\blog\base.html:67
+msgid "Top rated movies"
+msgstr "Топ-5 фильмов"
+
+#: .\blog\templates\blog\home.html:20 .\movies\templates\movies\home.html:85
+#: .\users\templates\users\user_posts.html:23
+msgid "First"
+msgstr "Начало"
+
+#: .\blog\templates\blog\home.html:21 .\movies\templates\movies\home.html:86
+#: .\users\templates\users\user_posts.html:24
+msgid "Previous"
+msgstr "Назад"
+
+#: .\blog\templates\blog\home.html:33 .\movies\templates\movies\home.html:98
+#: .\users\templates\users\user_posts.html:36
+msgid "Next"
+msgstr "Вперед"
+
+#: .\blog\templates\blog\home.html:34 .\movies\templates\movies\home.html:99
+#: .\users\templates\users\user_posts.html:37
+msgid "Last"
+msgstr "Конец"
+
+#: .\blog\templates\blog\post_confirm_delete.html:8
+msgid "Delete Post"
+msgstr "Удаление статьи"
+
+#: .\blog\templates\blog\post_confirm_delete.html:9
+msgid "Are you sure you want to delete the post"
+msgstr "Вы точно хотите удалить статью"
+
+#: .\blog\templates\blog\post_confirm_delete.html:11
+msgid "Yes, delete"
+msgstr "Да, удалить"
+
+#: .\blog\templates\blog\post_confirm_delete.html:12
+msgid "Cancel"
+msgstr "Отмена"
+
+#: .\blog\templates\blog\post_detail.html:12
+#: .\users\templates\users\profile.html:20
+msgid "Update"
+msgstr "Изменить"
+
+#: .\blog\templates\blog\post_detail.html:13
+msgid "Delete"
+msgstr "Удалить"
+
+#: .\blog\templates\blog\post_detail.html:59
+#: .\blog\templates\blog\post_form.html:11
+msgid "Post"
+msgstr "Создать"
+
+#: .\blog\templates\blog\post_form.html:8
+msgid "Blog Post"
+msgstr "Статья"
+
+#: .\movies\templates\movies\home.html:8
+msgid "user results for"
+msgstr "пользователей по запросу"
+
+#: .\movies\templates\movies\home.html:21
+msgid "movie results for"
+msgstr "фильмов по запросу"
+
+#: .\movies\templates\movies\home.html:49
+#: .\movies\templates\movies\home.html:58
+#: .\movies\templates\movies\home.html:65
+#: .\movies\templates\movies\movie_detail.html:33
+#: .\movies\templates\movies\movie_detail.html:42
+#: .\movies\templates\movies\movie_detail.html:49
+#: .\users\templates\users\user_detail.html:25
+msgid "Completed"
+msgstr "Просмотрено"
+
+#: .\movies\templates\movies\home.html:51
+#: .\movies\templates\movies\home.html:61
+#: .\movies\templates\movies\home.html:64
+#: .\movies\templates\movies\movie_detail.html:35
+#: .\movies\templates\movies\movie_detail.html:45
+#: .\movies\templates\movies\movie_detail.html:48
+#: .\users\templates\users\user_detail.html:22
+msgid "Planned"
+msgstr "Буду смотреть"
+
+#: .\movies\templates\movies\home.html:53
+#: .\movies\templates\movies\movie_detail.html:37
+msgid "Add to..."
+msgstr "Добавить в ..."
+
+#: .\movies\templates\movies\home.html:59
+#: .\movies\templates\movies\home.html:62
+#: .\movies\templates\movies\movie_detail.html:43
+#: .\movies\templates\movies\movie_detail.html:46
+msgid "Remove"
+msgstr "Удалить"
+
+#: .\movies\templates\movies\movie_detail.html:64
+msgid "Rating:"
+msgstr "Рейтинг"
+
+#: .\movies\templates\movies\movie_detail.html:71
+msgid "Duration:"
+msgstr "Длительность:"
+
+#: .\movies\templates\movies\movie_detail.html:72
+#: .\users\templates\users\user_detail.html:50
+#: .\users\templates\users\user_detail.html:82
+#: .\users\templates\users\user_detail.html:106
+msgid "min"
+msgstr "мин"
+
+#: .\users\templates\users\login.html:8 .\users\templates\users\login.html:11
+msgid "Log in"
+msgstr "Вход"
+
+#: .\users\templates\users\login.html:13
+msgid "Forgot Password?"
+msgstr "Забыли пароль?"
+
+#: .\users\templates\users\login.html:21
+msgid "Need an account?"
+msgstr "Желаете создать аккаунт?"
+
+#: .\users\templates\users\login.html:21
+msgid "Sign up now"
+msgstr "Регистрация"
+
+#: .\users\templates\users\logout.html:4
+msgid "You have been logged out"
+msgstr "Вы вышли из аккаунта"
+
+#: .\users\templates\users\logout.html:7
+msgid "Log in again"
+msgstr "Вход"
+
+#: .\users\templates\users\password_reset.html:8
+#: .\users\templates\users\password_reset_confirm.html:8
+#: .\users\templates\users\password_reset_confirm.html:11
+msgid "Reset Password"
+msgstr "Восстановление пароля"
+
+#: .\users\templates\users\password_reset.html:11
+msgid "Request Password Reset"
+msgstr "Восстановить пароль"
+
+#: .\users\templates\users\password_reset_complete.html:5
+msgid "Your password has been set."
+msgstr "Ваш пароль был изменен."
+
+#: .\users\templates\users\password_reset_complete.html:7
+msgid "Sign in here"
+msgstr "Войти в аккаунт"
+
+#: .\users\templates\users\password_reset_done.html:5
+msgid "An email has been sent with instructions to reset your password"
+msgstr "Письмо с инструкцией по сбросу пароля было выслано вам на почту"
+
+#: .\users\templates\users\profile.html:15
+msgid "Profile Info"
+msgstr "Информация о профиле"
+
+#: .\users\templates\users\register.html:8
+msgid "Join Today"
+msgstr "Регистрация"
+
+#: .\users\templates\users\register.html:11
+msgid "Sign up"
+msgstr "Зарегистрироваться"
+
+#: .\users\templates\users\register.html:18
+msgid "Already have an account?"
+msgstr "Желаете создать аккаунт?"
+
+#: .\users\templates\users\register.html:18
+msgid "Sign in"
+msgstr "Войти в аккаунт"
+
+#: .\users\templates\users\user_detail.html:6
+#, python-format
+msgid "%(username)s's profile "
+msgstr "Профиль пользователя %(username)s"
+
+#: .\users\templates\users\user_detail.html:7
+msgid "All posts"
+msgstr "Все статьи"
+
+#: .\users\templates\users\user_detail.html:9
+msgid "Settings"
+msgstr "Настройки"
+
+#: .\users\templates\users\user_detail.html:17
+msgid "Total watchtime:"
+msgstr "Потрачено часов:"
+
+#: .\users\templates\users\user_detail.html:17
+msgid "hrs"
+msgstr " "
+
+#: .\users\templates\users\user_detail.html:28
+msgid "Favorites"
+msgstr "Избранное"
+
+#: .\users\templates\users\user_detail.html:39
+#: .\users\templates\users\user_detail.html:63
+#: .\users\templates\users\user_detail.html:95
+msgid "Title"
+msgstr "Название"
+
+#: .\users\templates\users\user_detail.html:40
+#: .\users\templates\users\user_detail.html:65
+#: .\users\templates\users\user_detail.html:96
+msgid "Duration"
+msgstr "Длительность"
+
+#: .\users\templates\users\user_detail.html:41
+#: .\users\templates\users\user_detail.html:66
+#: .\users\templates\users\user_detail.html:97
+msgid "Date"
+msgstr "Дата добавления"
+
+#: .\users\templates\users\user_detail.html:64
+msgid "Rating"
+msgstr "Рейтинг"
+
+#: .\users\templates\users\user_posts.html:5
+msgid "Posts by"
+msgstr "Cтатьи"
+
+# -----------------------------------s
+# star-ratings
+msgid "You Rated: "
+msgstr "Ваша оценка: "
+
+msgid "Average: "
+msgstr "Средний балл: "
+
+msgid "Rating Count: "
+msgstr "Количество оценок: "
+
+msgid "Not rated"
+msgstr "Не оценено"

@@ -1,11 +1,12 @@
 {% extends "blog/base.html" %}
+{% load i18n %}
 {% block content %}
     <div class="header" style="display:table;">
         <img class="rounded-circle account-img" src="{{ user.profile.image.url }}" alt="profile-picture">
-        <h1>{{ user.username }}'s profile</h1>
-        <a class="btn btn-outline-dark mr-2" href="{% url 'user-posts' user.username %}">All posts</a>
+        <h1>{% blocktrans with username=user.username %}{{ username }}'s profile {% endblocktrans %}</h1>
+        <a class="btn btn-outline-dark mr-2" href="{% url 'user-posts' user.username %}">{% trans "All posts" %}</a>
         {% if user == logged_in_user %}
-            <a class="btn btn-outline-dark" href="{% url 'profile' %}">Settings</a>
+            <a class="btn btn-outline-dark" href="{% url 'profile' %}">{% trans "Settings" %}</a>
         {% endif %}
 
     </div>
@@ -13,18 +14,18 @@
         <hr>
         <em>{{ user.first_name }} {{ user.last_name }} ({{ user.email }})</em>
         <hr>
-        <h3>Total watchtime: {{ watchtime }} hrs</h3>
+        <h3>{% trans "Total watchtime:" %} {{ watchtime }} {% trans "hrs" %}</h3>
     </div>
 
     <ul class="nav nav-tabs mt-5">
         <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab" href="#home">Planned</a>
+            <a class="nav-link active" data-toggle="tab" href="#home">{% trans "Planned" %}</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#menu1">Completed</a>
+            <a class="nav-link" data-toggle="tab" href="#menu1">{% trans "Completed" %}</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#menu2">Favorites</a>
+            <a class="nav-link" data-toggle="tab" href="#menu2">{% trans "Favorites" %}</a>
         </li>
     </ul>
 
@@ -35,9 +36,9 @@
                 <table class="table table-striped table-bordered mydatatable" style="width: 100%">
                     <thead>
                         <tr>
-                            <th>Title</th>
-                            <th>Duration</th>
-                            <th>Date</th>
+                            <th>{% trans "Title" %}</th>
+                            <th>{% trans "Duration" %}</th>
+                            <th>{% trans "Date" %}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -46,7 +47,7 @@
                                 <td>
                                     <a style="color:inherit" href="{% url 'movie-detail' entry.movie.id %}">{{ entry.movie.title }}</a>
                                 </td>
-                                <td>{{ entry.movie.duration }} min</td>
+                                <td>{{ entry.movie.duration }} {% trans "min" %}</td>
                                 <td>{{ entry.date_added }}</td>
                             </tr>
                         {% endfor %}
@@ -59,10 +60,10 @@
                 <table class="table table-striped table-bordered mydatatable" style="width: 100%">
                     <thead>
                         <tr>
-                            <th>Title</th>
-                            <th>Rating</th>
-                            <th>Duration</th>
-                            <th>Date</th>
+                            <th>{% trans "Title" %}</th>
+                            <th>{% trans "Rating" %}</th>
+                            <th>{% trans "Duration" %}</th>
+                            <th>{% trans "Date" %}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -78,7 +79,7 @@
                                         {% endif %}
                                     {% endfor %}
                                 </td>
-                                <td>{{ entry.movie.duration }} min</td>
+                                <td>{{ entry.movie.duration }} {% trans "min" %}</td>
                                 <td>{{ entry.date_added }}</td>
                             </tr>
                         {% endfor %}
@@ -91,9 +92,9 @@
                 <table class="table table-striped table-bordered mydatatable" style="width: 100%">
                     <thead>
                         <tr>
-                            <th>Title</th>
-                            <th>Duration</th>
-                            <th>Date</th>
+                            <th>{% trans "Title" %}</th>
+                            <th>{% trans "Duration" %}</th>
+                            <th>{% trans "Date" %}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -102,7 +103,7 @@
                                 <td>
                                     <a style="color:inherit" href="{% url 'movie-detail' entry.movie.id %}">{{ entry.movie.title }}</a>
                                 </td>
-                                <td>{{ entry.movie.duration }} min</td>
+                                <td>{{ entry.movie.duration }} {% trans "min" %}</td>
                                 <td>{{ entry.date_added }}</td>
                             </tr>
                         {% endfor %}

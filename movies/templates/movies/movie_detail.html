@@ -1,6 +1,7 @@
 {% extends "blog/base.html" %}
 {% load static %}
 {% load ratings %}
+{% load i18n %}
 {% block content %}
 
     <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
@@ -29,23 +30,23 @@
                 " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
                     {% if movie in completed_movies %}
-                        Completed
+                        {% trans "Completed" %}
                     {% elif movie in planned_movies %}
-                        Planned
+                        {% trans "Planned" %}
                     {% else %}
-                        Add to...
+                        {% trans "Add to..." %}
                     {% endif %}
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     {% if movie in planned_movies %}
-                        <a class="dropdown-item list-completed" href="{% url 'add-to-completed' %}?next={{ request.path|urlencode }}&movie_id={{ movie.id }}">Completed</a>
-                        <a class="dropdown-item list-remove" href="{% url 'remove-from-lists' %}?next={{ request.path|urlencode }}&movie_id={{ movie.id }}">Remove</a>
+                        <a class="dropdown-item list-completed" href="{% url 'add-to-completed' %}?next={{ request.path|urlencode }}&movie_id={{ movie.id }}">{% trans "Completed" %}</a>
+                        <a class="dropdown-item list-remove" href="{% url 'remove-from-lists' %}?next={{ request.path|urlencode }}&movie_id={{ movie.id }}">{% trans "Remove" %}</a>
                     {% elif movie in completed_movies %}
-                        <a class="dropdown-item list-planned" href="{% url 'add-to-planned' %}?next={{ request.path|urlencode }}&movie_id={{ movie.id }}">Planned</a>
-                        <a class="dropdown-item list-remove" href="{% url 'remove-from-lists' %}?next={{ request.path|urlencode }}&movie_id={{ movie.id }}">Remove</a>
+                        <a class="dropdown-item list-planned" href="{% url 'add-to-planned' %}?next={{ request.path|urlencode }}&movie_id={{ movie.id }}">{% trans "Planned" %}</a>
+                        <a class="dropdown-item list-remove" href="{% url 'remove-from-lists' %}?next={{ request.path|urlencode }}&movie_id={{ movie.id }}">{% trans "Remove" %}</a>
                     {% else %}
-                        <a class="dropdown-item list-planned" href="{% url 'add-to-planned' %}?next={{ request.path|urlencode }}&movie_id={{ movie.id }}">Planned</a>
-                        <a class="dropdown-item list-completed" href="{% url 'add-to-completed' %}?next={{ request.path|urlencode }}&movie_id={{ movie.id }}">Completed</a>
+                        <a class="dropdown-item list-planned" href="{% url 'add-to-planned' %}?next={{ request.path|urlencode }}&movie_id={{ movie.id }}">{% trans "Planned" %}</a>
+                        <a class="dropdown-item list-completed" href="{% url 'add-to-completed' %}?next={{ request.path|urlencode }}&movie_id={{ movie.id }}">{% trans "Completed" %}</a>
                     {% endif %}
                 </div>
             </div>
@@ -60,15 +61,15 @@
 
     <article class="media content-section">
     <div class="media-body m-3">
-        <h3>Rating:</h3>
+        <h3>{% trans "Rating:" %}</h3>
         {% ratings movie %}
     </div>
     </article>
 
     <article class="media content-section">
         <div class="media-body m-3">
-            <h3>Duration:</h3>
-            <p> {{ movie.duration }} min</p>
+            <h3>{% trans "Duration:" %}</h3>
+            <p> {{ movie.duration }} {% trans "min" %}</p>
         </div>
     </article>
 

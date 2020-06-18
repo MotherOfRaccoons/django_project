@@ -1,11 +1,11 @@
 {% extends "blog/base.html" %}
-{% load class_name %}
+{% load class_name i18n %}
 {% block content %}
 
 
     {% if query != None and query != '' %}
         <div class='row title-row m-3'>
-            <h3 class='my-0 py-0'>{{ user_count }} user results for "<b>{{ query }}</b>"</h3>
+            <h3 class='my-0 py-0'>{{ user_count }} {% trans "user results for" %} "<b>{{ query }}</b>"</h3>
         </div>
         <ul>
           {% for user in found_users %}
@@ -18,7 +18,7 @@
         </ul>
 
         <div class='row title-row m-3'>
-            <h3 class='my-0 py-0'>{{ count }} movie results for "<b>{{ query }}</b>"</h3>
+            <h3 class='my-0 py-0'>{{ count }} {% trans "movie results for" %} "<b>{{ query }}</b>"</h3>
         </div>
     {% endif %}
 
@@ -46,23 +46,23 @@
                         dropdown-toggle mt-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
                             {% if movie in completed_movies %}
-                                Completed
+                                {% trans "Completed" %}
                             {% elif movie in planned_movies %}
-                                Planned
+                                {% trans "Planned" %}
                             {% else %}
-                                Add to...
+                                {% trans "Add to..." %}
                             {% endif %}
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             {% if movie in planned_movies %}
-                                <a class="dropdown-item list-completed" href="{% url 'add-to-completed' %}?next={{ request.path|urlencode }}&movie_id={{ movie.id }}">Completed</a>
-                                <a class="dropdown-item list-remove" href="{% url 'remove-from-lists' %}?next={{ request.path|urlencode }}&movie_id={{ movie.id }}">Remove</a>
+                                <a class="dropdown-item list-completed" href="{% url 'add-to-completed' %}?next={{ request.path|urlencode }}&movie_id={{ movie.id }}">{% trans "Completed" %}</a>
+                                <a class="dropdown-item list-remove" href="{% url 'remove-from-lists' %}?next={{ request.path|urlencode }}&movie_id={{ movie.id }}">{% trans "Remove" %}</a>
                             {% elif movie in completed_movies %}
-                                <a class="dropdown-item list-planned" href="{% url 'add-to-planned' %}?next={{ request.path|urlencode }}&movie_id={{ movie.id }}">Planned</a>
-                                <a class="dropdown-item list-remove" href="{% url 'remove-from-lists' %}?next={{ request.path|urlencode }}&movie_id={{ movie.id }}">Remove</a>
+                                <a class="dropdown-item list-planned" href="{% url 'add-to-planned' %}?next={{ request.path|urlencode }}&movie_id={{ movie.id }}">{% trans "Planned" %}</a>
+                                <a class="dropdown-item list-remove" href="{% url 'remove-from-lists' %}?next={{ request.path|urlencode }}&movie_id={{ movie.id }}">{% trans "Remove" %}</a>
                             {% else %}
-                                <a class="dropdown-item list-planned" href="{% url 'add-to-planned' %}?next={{ request.path|urlencode }}&movie_id={{ movie.id }}">Planned</a>
-                                <a class="dropdown-item list-completed" href="{% url 'add-to-completed' %}?next={{ request.path|urlencode }}&movie_id={{ movie.id }}">Completed</a>
+                                <a class="dropdown-item list-planned" href="{% url 'add-to-planned' %}?next={{ request.path|urlencode }}&movie_id={{ movie.id }}">{% trans "Planned" %}</a>
+                                <a class="dropdown-item list-completed" href="{% url 'add-to-completed' %}?next={{ request.path|urlencode }}&movie_id={{ movie.id }}">{% trans "Completed" %}</a>
                             {% endif %}
                         </div>
                     </div>
@@ -73,7 +73,7 @@
                         <a id="movie-article" href="{% url 'movie-detail' movie.id%}">{{ movie.title }}</a>
                         ({{ movie.released.year }})
                     </h2>
-                    <p>{{ movie.description }}</p>
+                    <p>{{ movie.description | truncatewords:55 }}</p>
                 </div>
             </article>
     {% endfor %}
@@ -82,8 +82,8 @@
 
     {% if is_paginated %}
         {% if page_obj.has_previous %}
-            <a class="btn btn-outline-info mb-4" href="?page=1&q={{ query }}">First</a>
-            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}&q={{ query }}">Previous</a>
+            <a class="btn btn-outline-info mb-4" href="?page=1&q={{ query }}">{% trans "First" %}</a>
+            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}&q={{ query }}">{% trans "Previous" %}</a>
         {% endif %}
 
         {% for num in page_obj.paginator.page_range %}
@@ -95,8 +95,8 @@
         {% endfor %}
 
         {% if page_obj.has_next %}
-            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}&q={{ query }}">Next</a>
-            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}&q={{ query }}">Last</a>
+            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}&q={{ query }}">{% trans "Next" %}</a>
+            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}&q={{ query }}">{% trans "Last" %}</a>
         {% endif %}
     {% endif %}
 {% endblock content %}

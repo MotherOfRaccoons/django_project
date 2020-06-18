@@ -1,5 +1,5 @@
 {% extends "blog/base.html" %}
-{% load crispy_forms_tags %}
+{% load crispy_forms_tags i18n %}
 {% block content %}
     <div class="content-section">
         <div class="media">
@@ -12,12 +12,12 @@
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Profile Info</legend>
+                <legend class="border-bottom mb-4"> {% trans "Profile Info" %}</legend>
                 {{ u_form|crispy }}
                 {{ p_form|crispy }}
                 {% include 'bootstrap4/layout/help_text_and_errors.html' %}
                 <div class="form-group">
-                    <button class="btn btn-outline-info" type="submit">Update</button>
+                    <button class="btn btn-outline-info" type="submit">{% trans "Update" %}</button>
                 </div>
             </fieldset>
         </form>

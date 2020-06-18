@@ -18,3 +18,4 @@ sqlparse==0.3.0
 urllib3==1.25.7
 whitenoise==4.1.4
 django-star-ratings==0.9.1
+django-modeltranslation~=0.15

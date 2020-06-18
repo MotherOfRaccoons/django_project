@@ -1,21 +1,21 @@
 {% extends "blog/base.html" %}
-{% load crispy_forms_tags %}
+{% load crispy_forms_tags i18n %}
 {% block content %}
     <div class="content-section">
         <form method="post">
             {% csrf_token %}
             <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Join Today</legend>
+                <legend class="border-bottom mb-4">{% trans "Join Today" %}</legend>
                 {{ form|crispy }}
                 <div class="form-group">
-                    <button class="btn btn-outline-info" type="submit">Sign up</button>
+                    <button class="btn btn-outline-info" type="submit">{% trans "Sign up" %}</button>
                 </div>
             </fieldset>
         </form>
 
         <div class="border-top pt-3">
             <small class="text-muted">
-                Already have an account? <a class="ml-2" href="{% url 'login' %}">Sign in</a>
+                {% trans "Already have an account?" %} <a class="ml-2" href="{% url 'login' %}">{% trans "Sign in" %}</a>
             </small>
         </div>
     </div>
