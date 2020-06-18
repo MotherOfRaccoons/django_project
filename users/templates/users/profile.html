@@ -15,6 +15,7 @@
                 <legend class="border-bottom mb-4">Profile Info</legend>
                 {{ u_form|crispy }}
                 {{ p_form|crispy }}
+                {% include 'bootstrap4/layout/help_text_and_errors.html' %}
                 <div class="form-group">
                     <button class="btn btn-outline-info" type="submit">Update</button>
                 </div>

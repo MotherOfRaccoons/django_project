@@ -3,10 +3,22 @@
 {% block content %}
 
 
-
     {% if query != None and query != '' %}
         <div class='row title-row m-3'>
-                <h3 class='my-0 py-0'>{{ count }} results for "<b>{{ query }}</b>"</h3>
+            <h3 class='my-0 py-0'>{{ user_count }} user results for "<b>{{ query }}</b>"</h3>
+        </div>
+        <ul>
+          {% for user in found_users %}
+            <li>
+                <h5>
+                    <a style="color:black " href="{% url 'user-profile' user.user.id %}">{{ user.user.username }}</a>
+                </h5>
+            </li>
+            {% endfor %}
+        </ul>
+
+        <div class='row title-row m-3'>
+            <h3 class='my-0 py-0'>{{ count }} movie results for "<b>{{ query }}</b>"</h3>
         </div>
     {% endif %}
 

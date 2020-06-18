@@ -1,13 +1,25 @@
 from django.utils import timezone
 from django.db import models
+from django.db.models import Q
 from django.contrib.auth.models import User
 from movies.models import Movie
 from PIL import Image
 
 
+class ProfileManager(models.Manager):
+    def search(self, query=None):
+        qs = self.get_queryset()
+        if query is not None:
+            or_lookup = (Q(user__username__icontains=query))
+            qs = qs.filter(or_lookup).distinct()  # distinct() is often necessary with Q lookups
+        return qs
+
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(default='default.jpg', upload_to='profile_pics')
+
+    objects = ProfileManager()
 
     def __str__(self):
         return f'{self.user.username} Profile'

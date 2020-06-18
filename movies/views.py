@@ -6,7 +6,23 @@ from django.views.generic import (
 )
 
 from .models import Movie
-from users.models import User, MovieList
+from users.models import Profile, MovieList
+
+
+def get_list_context(user):
+    context = {'user': user}
+
+    if not user.is_anonymous:
+        completed_movies = [
+            entry.movie for entry in MovieList.objects.filter(user=user, status__status='Completed')
+        ]
+        planned_movies = [
+            entry.movie for entry in MovieList.objects.filter(user=user, status__status='Planned')
+        ]
+        context['completed_movies'] = completed_movies
+        context['planned_movies'] = planned_movies
+
+    return context
 
 
 class SearchView(ListView):
@@ -19,6 +35,12 @@ class SearchView(ListView):
         context = super().get_context_data(*args, **kwargs)
         context['count'] = self.count or 0
         context['query'] = self.request.GET.get('q')
+        context.update(get_list_context(self.request.user))
+
+        user_qs = Profile.objects.search(query=self.request.GET.get('q', None))[:5]
+        context['user_count'] = len(user_qs) or 0
+        context['found_users'] = user_qs
+
         return context
 
     def get_queryset(self):
@@ -40,17 +62,7 @@ class MovieListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        current_user = self.request.user
-        context['user'] = current_user
-        if not current_user.is_anonymous:
-            completed_movies = [
-                entry.movie for entry in MovieList.objects.filter(user=self.request.user, status__status='Completed')
-            ]
-            planned_movies = [
-                entry.movie for entry in MovieList.objects.filter(user=self.request.user, status__status='Planned')
-            ]
-            context['completed_movies'] = completed_movies
-            context['planned_movies'] = planned_movies
+        context.update(get_list_context(self.request.user))
         return context
 
 
@@ -60,17 +72,7 @@ class MovieDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        current_user = self.request.user
-        context['user'] = current_user
-        if not current_user.is_anonymous:
-            completed_movies = [
-                entry.movie for entry in MovieList.objects.filter(user=self.request.user, status__status='Completed')
-            ]
-            planned_movies = [
-                entry.movie for entry in MovieList.objects.filter(user=self.request.user, status__status='Planned')
-            ]
-            context['completed_movies'] = completed_movies
-            context['planned_movies'] = planned_movies
+        context.update(get_list_context(self.request.user))
         return context
 
 
