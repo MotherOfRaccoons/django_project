@@ -44,13 +44,17 @@
         min-height: 50px;
     }
 
+    .comment-form label {
+        display: none;
+    }
+
     </style>
 
     <div class="comment-wrapper">
         <div class="panel panel-info">
             <div class="panel-body">
 
-                <form method="post">
+                <form method="post" class="comment-form">
                     {% csrf_token %}
                     {{ comment_form | crispy }}
                     <button style="width: 100px" type="submit" class="btn btn-outline-info align-center">Post</button>

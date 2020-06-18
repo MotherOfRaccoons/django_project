@@ -1,17 +1,20 @@
 {% extends "blog/base.html" %}
 {% block content %}
-    <div class="header">
+    <div class="header" style="display:table;">
         <img class="rounded-circle account-img" src="{{ user.profile.image.url }}" alt="profile-picture">
         <h1>{{ user.username }}'s profile</h1>
-        <a class="btn btn-outline-dark" href="{% url 'user-posts' user.username %}">All posts</a>
+        <a class="btn btn-outline-dark mr-2" href="{% url 'user-posts' user.username %}">All posts</a>
         {% if user == logged_in_user %}
             <a class="btn btn-outline-dark" href="{% url 'profile' %}">Settings</a>
         {% endif %}
+
     </div>
-    <hr>
-    <em>{{ user.first_name }} {{ user.last_name }} ({{ user.email }})</em>
-    <hr>
-    <h3>Total watchtime: {{ watchtime }} hrs</h3>
+    <div>
+        <hr>
+        <em>{{ user.first_name }} {{ user.last_name }} ({{ user.email }})</em>
+        <hr>
+        <h3>Total watchtime: {{ watchtime }} hrs</h3>
+    </div>
 
     <ul class="nav nav-tabs mt-5">
         <li class="nav-item">
