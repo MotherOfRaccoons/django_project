@@ -1,11 +1,12 @@
 from django.shortcuts import HttpResponseRedirect, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import JsonResponse
 from django.views import View
 from django.views.generic import (
     ListView, DetailView, CreateView, UpdateView, DeleteView
 )
 
-from .models import Movie
+from .models import Movie, UserRating
 from users.models import Profile, MovieList
 
 
@@ -99,6 +100,10 @@ class AddToPlannedView(LoginRequiredMixin, View):
             entry.delete()
         list_entry = MovieList.objects.create_planned_entry(user=self.request.user, movie=movie)
         list_entry.save()
+        # remove rating
+        rating = UserRating.objects.filter(user=self.request.user, rating_id__object_id=movie.id)
+        if rating.exists():
+            rating.delete()
         return redirect(next_page)
 
 
@@ -109,4 +114,24 @@ class RemoveFromList(LoginRequiredMixin, View):
         movie = Movie.objects.get(id=request.GET.get("movie_id"))
         entry = MovieList.objects.filter(user=self.request.user, movie=movie)
         entry.delete()
+        # remove rating
+        rating = UserRating.objects.filter(user=self.request.user, rating_id__object_id=movie.id)
+        if rating.exists():
+            rating.delete()
         return HttpResponseRedirect(next_page)
+
+
+def handle_rating(request):
+    user = request.user
+    movie = Movie.objects.filter(id=request.GET.get('id', None)).get()
+    entry = MovieList.objects.filter(user=user, movie=movie)
+
+    if not entry.exists() or (entry.get().status.status != 'Completed'):
+        entry.delete()
+        list_entry = MovieList.objects.create_completed_entry(user=user, movie=movie)
+        list_entry.save()
+        changed = True
+    else:
+        changed = False
+
+    return JsonResponse({'changed': changed})

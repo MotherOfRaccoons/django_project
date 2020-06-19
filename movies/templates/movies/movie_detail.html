@@ -73,6 +73,29 @@
         </div>
     </article>
 
-
-
 {% endblock content %}
+
+
+{% block javascript %}
+    <script>
+        window.addEventListener("rate-success", function (e) {
+            var user_rating = e.detail['rating']['user_rating'];
+
+            $.ajax({
+                url: '{% url 'change-rating' %}',
+                data: {
+                    'rating': user_rating,
+                    'id': {{ movie.id }}
+                },
+                dataType: 'json',
+                success: function (data) {
+                    if (data['changed']) {
+                        location.reload()
+                    } else {
+                        console.log('FUCK OFF')
+                    }
+                }
+            });
+        })
+    </script>
+{% endblock %}
