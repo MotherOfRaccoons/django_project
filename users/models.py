@@ -62,3 +62,21 @@ class MovieList(models.Model):
 
     def __str__(self):
         return f"{self.user}'s {self.status}"
+
+
+class Event(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    event = models.CharField(max_length=100)
+    time = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.event
+
+
+class FollowingRelation(models.Model):
+    following = models.ForeignKey(User, on_delete=models.CASCADE, related_name='following')
+    followed = models.ForeignKey(User, on_delete=models.CASCADE, related_name='followed')
+
+    def __str__(self):
+        return f'{self.following} follows {self.followed}'

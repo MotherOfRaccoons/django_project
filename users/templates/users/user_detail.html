@@ -1,12 +1,17 @@
 {% extends "blog/base.html" %}
 {% load i18n %}
 {% block content %}
-    <div class="header" style="display:table;">
+    <div class="header" style="display:table; width: 100%">
         <img class="rounded-circle account-img" src="{{ user.profile.image.url }}" alt="profile-picture">
         <h1>{% blocktrans with username=user.username %}{{ username }}'s profile {% endblocktrans %}</h1>
         <a class="btn btn-outline-dark mr-2" href="{% url 'user-posts' user.username %}">{% trans "All posts" %}</a>
         {% if user == logged_in_user %}
-            <a class="btn btn-outline-dark" href="{% url 'profile' %}">{% trans "Settings" %}</a>
+            <a class="btn btn-outline-dark mr-2" href="{% url 'profile' %}">{% trans "Settings" %}</a>
+            <a class="btn btn-outline-dark" href="{% url 'show-events' %}">{% trans "Events"%}</a>
+        {% elif is_following %}
+            <a class="btn btn-outline-dark" href="{% url 'user-unfollow' user.id %}">{% trans "Unfollow"%}</a>
+        {% else %}
+            <a class="btn btn-outline-dark" href="{% url 'user-follow' user.id %}">{% trans "Follow"%}</a>
         {% endif %}
 
     </div>

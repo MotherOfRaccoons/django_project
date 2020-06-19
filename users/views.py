@@ -6,7 +6,7 @@ from django.views.generic import (
     DetailView, ListView
 )
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
-from .models import User, MovieList
+from .models import User, MovieList, FollowingRelation
 from blog.models import Post
 from star_ratings.models import UserRating
 
@@ -79,4 +79,20 @@ class UserDetailView(DetailView):
         user_ratings = UserRating.objects.filter(user_id=user_id)
         context['user_ratings'] = user_ratings
 
+        is_following = FollowingRelation.objects.all().filter(following=self.request.user, followed=user_id).exists()
+        context['is_following'] = is_following
         return context
+
+
+def follow_user(request, *args, **kwargs):
+    user_id = kwargs['user']
+    relation = FollowingRelation(following=request.user, followed=User.objects.all().filter(id=user_id).get())
+    relation.save()
+    return redirect('user-profile', user_id)
+
+
+def unfollow_user(request, *args, **kwargs):
+    user_id = kwargs['user']
+    relation = FollowingRelation.objects.all().filter(following=request.user, followed=user_id)
+    relation.delete()
+    return redirect('user-profile', user_id)

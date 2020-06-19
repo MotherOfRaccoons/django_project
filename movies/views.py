@@ -7,7 +7,7 @@ from django.views.generic import (
 )
 
 from .models import Movie, UserRating
-from users.models import Profile, MovieList
+from users.models import Profile, MovieList, FollowingRelation, Event
 
 
 def get_list_context(user):
@@ -80,30 +80,38 @@ class MovieDetailView(DetailView):
 class AddToCompletedView(LoginRequiredMixin, View):
 
     def get(self, request, *args, **kwargs):
+        user = self.request.user
         next_page = request.GET.get("next")
         movie = Movie.objects.get(id=request.GET.get("movie_id"))
-        entry = MovieList.objects.filter(user=self.request.user, movie=movie)
+        entry = MovieList.objects.filter(user=user, movie=movie)
         if entry.exists():
             entry.delete()
-        list_entry = MovieList.objects.create_completed_entry(user=self.request.user, movie=movie)
+        list_entry = MovieList.objects.create_completed_entry(user=user, movie=movie)
         list_entry.save()
+        # create event
+        event = Event(user=user, movie=movie, event='Added to completed')
+        event.save()
         return HttpResponseRedirect(next_page)
 
 
 class AddToPlannedView(LoginRequiredMixin, View):
 
     def get(self, request, *args, **kwargs):
+        user = self.request.user
         next_page = request.GET.get("next")
         movie = Movie.objects.get(id=request.GET.get("movie_id"))
-        entry = MovieList.objects.filter(user=self.request.user, movie=movie)
+        entry = MovieList.objects.filter(user=user, movie=movie)
         if entry.exists():
             entry.delete()
-        list_entry = MovieList.objects.create_planned_entry(user=self.request.user, movie=movie)
+        list_entry = MovieList.objects.create_planned_entry(user=user, movie=movie)
         list_entry.save()
         # remove rating
-        rating = UserRating.objects.filter(user=self.request.user, rating_id__object_id=movie.id)
+        rating = UserRating.objects.filter(user=user, rating_id__object_id=movie.id)
         if rating.exists():
             rating.delete()
+        # create event
+        event = Event(user=user, movie=movie, event='Added to planned')
+        event.save()
         return redirect(next_page)
 
 
@@ -131,7 +139,26 @@ def handle_rating(request):
         list_entry = MovieList.objects.create_completed_entry(user=user, movie=movie)
         list_entry.save()
         changed = True
+        event = Event(user=user, movie=movie, event='Added to completed')
+        event.save()
     else:
         changed = False
 
+    rating = request.GET.get('rating', None)
+    event = Event(user=user, movie=movie, event=f'Rated {rating} <i class="fas fa-star"></i>')
+    event.save()
+
     return JsonResponse({'changed': changed})
+
+
+class EventListView(ListView):
+    model = Event
+    template_name = 'users/events.html'
+    context_object_name = 'events'
+    paginate_by = 10
+
+    def get_queryset(self):
+        following_relation = FollowingRelation.objects.all().filter(following=self.request.user).values()
+        followed = [x['followed_id'] for x in following_relation]
+        events = Event.objects.all().filter(user_id__in=followed).order_by('-time')
+        return events

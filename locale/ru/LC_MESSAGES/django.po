@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-18 19:32+0300\n"
+"POT-Creation-Date: 2020-06-19 11:41+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -65,21 +65,25 @@ msgid "Top rated movies"
 msgstr "Топ-5 фильмов"
 
 #: .\blog\templates\blog\home.html:20 .\movies\templates\movies\home.html:85
+#: .\users\templates\users\events.html:21
 #: .\users\templates\users\user_posts.html:23
 msgid "First"
 msgstr "Начало"
 
 #: .\blog\templates\blog\home.html:21 .\movies\templates\movies\home.html:86
+#: .\users\templates\users\events.html:22
 #: .\users\templates\users\user_posts.html:24
 msgid "Previous"
 msgstr "Назад"
 
 #: .\blog\templates\blog\home.html:33 .\movies\templates\movies\home.html:98
+#: .\users\templates\users\events.html:34
 #: .\users\templates\users\user_posts.html:36
 msgid "Next"
 msgstr "Вперед"
 
 #: .\blog\templates\blog\home.html:34 .\movies\templates\movies\home.html:99
+#: .\users\templates\users\events.html:35
 #: .\users\templates\users\user_posts.html:37
 msgid "Last"
 msgstr "Конец"
@@ -132,7 +136,7 @@ msgstr "фильмов по запросу"
 #: .\movies\templates\movies\movie_detail.html:33
 #: .\movies\templates\movies\movie_detail.html:42
 #: .\movies\templates\movies\movie_detail.html:49
-#: .\users\templates\users\user_detail.html:25
+#: .\users\templates\users\user_detail.html:28
 msgid "Completed"
 msgstr "Просмотрено"
 
@@ -142,7 +146,7 @@ msgstr "Просмотрено"
 #: .\movies\templates\movies\movie_detail.html:35
 #: .\movies\templates\movies\movie_detail.html:45
 #: .\movies\templates\movies\movie_detail.html:48
-#: .\users\templates\users\user_detail.html:22
+#: .\users\templates\users\user_detail.html:25
 msgid "Planned"
 msgstr "Буду смотреть"
 
@@ -167,9 +171,9 @@ msgid "Duration:"
 msgstr "Длительность:"
 
 #: .\movies\templates\movies\movie_detail.html:72
-#: .\users\templates\users\user_detail.html:50
-#: .\users\templates\users\user_detail.html:82
-#: .\users\templates\users\user_detail.html:106
+#: .\users\templates\users\user_detail.html:53
+#: .\users\templates\users\user_detail.html:85
+#: .\users\templates\users\user_detail.html:109
 msgid "min"
 msgstr "мин"
 
@@ -248,41 +252,45 @@ msgstr "Профиль пользователя %(username)s"
 msgid "All posts"
 msgstr "Все статьи"
 
-#: .\users\templates\users\user_detail.html:9
+#: .\users\templates\users\user_detail.html:10
 msgid "Settings"
 msgstr "Настройки"
 
-#: .\users\templates\users\user_detail.html:17
+#: .\users\templates\users\user_detail.html:11
+msgid "Events"
+msgstr ""
+
+#: .\users\templates\users\user_detail.html:20
 msgid "Total watchtime:"
 msgstr "Потрачено часов:"
 
-#: .\users\templates\users\user_detail.html:17
+#: .\users\templates\users\user_detail.html:20
 msgid "hrs"
 msgstr " "
 
-#: .\users\templates\users\user_detail.html:28
+#: .\users\templates\users\user_detail.html:31
 msgid "Favorites"
 msgstr "Избранное"
 
-#: .\users\templates\users\user_detail.html:39
-#: .\users\templates\users\user_detail.html:63
-#: .\users\templates\users\user_detail.html:95
+#: .\users\templates\users\user_detail.html:42
+#: .\users\templates\users\user_detail.html:66
+#: .\users\templates\users\user_detail.html:98
 msgid "Title"
 msgstr "Название"
 
-#: .\users\templates\users\user_detail.html:40
-#: .\users\templates\users\user_detail.html:65
-#: .\users\templates\users\user_detail.html:96
+#: .\users\templates\users\user_detail.html:43
+#: .\users\templates\users\user_detail.html:68
+#: .\users\templates\users\user_detail.html:99
 msgid "Duration"
 msgstr "Длительность"
 
-#: .\users\templates\users\user_detail.html:41
-#: .\users\templates\users\user_detail.html:66
-#: .\users\templates\users\user_detail.html:97
+#: .\users\templates\users\user_detail.html:44
+#: .\users\templates\users\user_detail.html:69
+#: .\users\templates\users\user_detail.html:100
 msgid "Date"
 msgstr "Дата добавления"
 
-#: .\users\templates\users\user_detail.html:64
+#: .\users\templates\users\user_detail.html:67
 msgid "Rating"
 msgstr "Рейтинг"
 
@@ -292,14 +300,14 @@ msgstr "Cтатьи"
 
 # -----------------------------------s
 # star-ratings
-msgid "You Rated: "
-msgstr "Ваша оценка: "
+#~ msgid "You Rated: "
+#~ msgstr "Ваша оценка: "
 
-msgid "Average: "
-msgstr "Средний балл: "
+#~ msgid "Average: "
+#~ msgstr "Средний балл: "
 
-msgid "Rating Count: "
-msgstr "Количество оценок: "
+#~ msgid "Rating Count: "
+#~ msgstr "Количество оценок: "
 
-msgid "Not rated"
-msgstr "Не оценено"
+#~ msgid "Not rated"
+#~ msgstr "Не оценено"
