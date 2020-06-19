@@ -344,14 +344,14 @@ msgstr "Cтатьи"
 
 # -----------------------------------s
 # star-ratings
-#~ msgid "You Rated: "
-#~ msgstr "Ваша оценка: "
+msgid "You Rated: "
+msgstr "Ваша оценка: "
 
-#~ msgid "Average: "
-#~ msgstr "Средний балл: "
+msgid "Average: "
+msgstr "Средний балл: "
 
-#~ msgid "Rating Count: "
-#~ msgstr "Количество оценок: "
+msgid "Rating Count: "
+msgstr "Количество оценок: "
 
-#~ msgid "Not rated"
-#~ msgstr "Не оценено"
+msgid "Not rated"
+msgstr "Не оценено"
