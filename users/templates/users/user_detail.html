@@ -18,6 +18,10 @@
     <div>
         <hr>
         <em>{{ user.first_name }} {{ user.last_name }} ({{ user.email }})</em>
+            <div class="mt-2">
+                <a style="color: black" class="btn btn-link" href="{% url 'user-unfollow' user.id %}"><strong>{{ follower_count }}</strong> {% trans "Followers"%}</a>
+                <a style="color: black" class="btn btn-link" href="{% url 'user-unfollow' user.id %}"><strong>{{ followed_count }}</strong> {% trans "Following"%}</a>
+            </div>
         <hr>
         <h3>{% trans "Total watchtime:" %} {{ watchtime }} {% trans "hrs" %}</h3>
     </div>

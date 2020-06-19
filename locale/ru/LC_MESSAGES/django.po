@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-19 11:41+0300\n"
+"POT-Creation-Date: 2020-06-19 12:58+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -136,7 +136,7 @@ msgstr "фильмов по запросу"
 #: .\movies\templates\movies\movie_detail.html:33
 #: .\movies\templates\movies\movie_detail.html:42
 #: .\movies\templates\movies\movie_detail.html:49
-#: .\users\templates\users\user_detail.html:28
+#: .\users\templates\users\user_detail.html:34
 msgid "Completed"
 msgstr "Просмотрено"
 
@@ -146,7 +146,7 @@ msgstr "Просмотрено"
 #: .\movies\templates\movies\movie_detail.html:35
 #: .\movies\templates\movies\movie_detail.html:45
 #: .\movies\templates\movies\movie_detail.html:48
-#: .\users\templates\users\user_detail.html:25
+#: .\users\templates\users\user_detail.html:31
 msgid "Planned"
 msgstr "Буду смотреть"
 
@@ -167,15 +167,43 @@ msgid "Rating:"
 msgstr "Рейтинг"
 
 #: .\movies\templates\movies\movie_detail.html:71
-msgid "Duration:"
-msgstr "Длительность:"
+msgid "Details"
+msgstr "Информация"
 
-#: .\movies\templates\movies\movie_detail.html:72
-#: .\users\templates\users\user_detail.html:53
-#: .\users\templates\users\user_detail.html:85
-#: .\users\templates\users\user_detail.html:109
+#: .\movies\templates\movies\movie_detail.html:73
+msgid "Duration: "
+msgstr "Длительность: "
+
+#: .\movies\templates\movies\movie_detail.html:73
+#: .\users\templates\users\user_detail.html:59
+#: .\users\templates\users\user_detail.html:91
+#: .\users\templates\users\user_detail.html:115
 msgid "min"
 msgstr "мин"
+
+#: .\movies\templates\movies\movie_detail.html:74
+msgid "Released: "
+msgstr "Дата релиза: "
+
+#: .\movies\templates\movies\movie_detail.html:75
+msgid "Runtime: "
+msgstr "Длительность: "
+
+#: .\movies\templates\movies\movie_detail.html:76
+msgid "IMDb Link: "
+msgstr "Ссылка на IMDb: "
+
+#: .\movies\templates\movies\movie_detail.html:77
+msgid "Budget: "
+msgstr "Бюджет: "
+
+#: .\movies\templates\movies\movie_detail.html:78
+msgid "Director: "
+msgstr "Режиссер: "
+
+#: .\movies\templates\movies\movie_detail.html:79
+msgid "Certificate: "
+msgstr "Возрастное ограниечние: "
 
 #: .\users\templates\users\login.html:8 .\users\templates\users\login.html:11
 msgid "Log in"
@@ -252,45 +280,61 @@ msgstr "Профиль пользователя %(username)s"
 msgid "All posts"
 msgstr "Все статьи"
 
-#: .\users\templates\users\user_detail.html:10
+#: .\users\templates\users\user_detail.html:9
 msgid "Settings"
 msgstr "Настройки"
 
-#: .\users\templates\users\user_detail.html:11
+#: .\users\templates\users\user_detail.html:10
 msgid "Events"
-msgstr ""
+msgstr "События"
 
-#: .\users\templates\users\user_detail.html:20
+#: .\users\templates\users\user_detail.html:12
+msgid "Unfollow"
+msgstr "Отписаться"
+
+#: .\users\templates\users\user_detail.html:14
+msgid "Follow"
+msgstr "Подписаться"
+
+#: .\users\templates\users\user_detail.html:22
+msgid "Followers"
+msgstr "Подписчиков"
+
+#: .\users\templates\users\user_detail.html:23
+msgid "Following"
+msgstr "Подписок"
+
+#: .\users\templates\users\user_detail.html:26
 msgid "Total watchtime:"
 msgstr "Потрачено часов:"
 
-#: .\users\templates\users\user_detail.html:20
+#: .\users\templates\users\user_detail.html:26
 msgid "hrs"
 msgstr " "
 
-#: .\users\templates\users\user_detail.html:31
+#: .\users\templates\users\user_detail.html:37
 msgid "Favorites"
 msgstr "Избранное"
 
-#: .\users\templates\users\user_detail.html:42
-#: .\users\templates\users\user_detail.html:66
-#: .\users\templates\users\user_detail.html:98
+#: .\users\templates\users\user_detail.html:48
+#: .\users\templates\users\user_detail.html:72
+#: .\users\templates\users\user_detail.html:104
 msgid "Title"
 msgstr "Название"
 
-#: .\users\templates\users\user_detail.html:43
-#: .\users\templates\users\user_detail.html:68
-#: .\users\templates\users\user_detail.html:99
+#: .\users\templates\users\user_detail.html:49
+#: .\users\templates\users\user_detail.html:74
+#: .\users\templates\users\user_detail.html:105
 msgid "Duration"
 msgstr "Длительность"
 
-#: .\users\templates\users\user_detail.html:44
-#: .\users\templates\users\user_detail.html:69
-#: .\users\templates\users\user_detail.html:100
+#: .\users\templates\users\user_detail.html:50
+#: .\users\templates\users\user_detail.html:75
+#: .\users\templates\users\user_detail.html:106
 msgid "Date"
 msgstr "Дата добавления"
 
-#: .\users\templates\users\user_detail.html:67
+#: .\users\templates\users\user_detail.html:73
 msgid "Rating"
 msgstr "Рейтинг"
 

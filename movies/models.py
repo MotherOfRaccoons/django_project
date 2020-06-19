@@ -22,6 +22,10 @@ class Movie(models.Model):
     duration = models.PositiveSmallIntegerField()
     poster = models.ImageField(default="no_image.png", upload_to="movie_posters")
     ratings = GenericRelation(Rating, related_query_name='movies')
+    imdb_link = models.CharField(max_length=100)
+    budget = models.CharField(max_length=30, blank=True)
+    director = models.CharField(max_length=30, blank=True)
+    certificate = models.CharField(max_length=3, blank=True)
 
     objects = PostManager()
 

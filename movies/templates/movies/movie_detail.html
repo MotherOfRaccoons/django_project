@@ -68,8 +68,16 @@
 
     <article class="media content-section">
         <div class="media-body m-3">
-            <h3>{% trans "Duration:" %}</h3>
-            <p> {{ movie.duration }} {% trans "min" %}</p>
+            <h3>{% trans "Details" %}</h3>
+            <p>
+                {% trans "Duration: " %}{{ movie.duration }} {% trans "min" %} <br>
+                {% trans "Released: " %}{{ movie.released }}<br>
+                {% trans "Runtime: " %}{{ movie.duration }}<br>
+                {% trans "IMDb Link: " %}<a href="{{ movie.imdb_link }}">{{ movie.title }}</a><br>
+                {% trans "Budget: " %}{{ movie.budget }}<br>
+                {% trans "Director: " %}{{ movie.director }}<br>
+                {% trans "Certificate: " %}{{ movie.certificate }}<br>
+        </p>
         </div>
     </article>
 
